@@ -3,6 +3,7 @@ import express, { Express } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { TaskResolver } from './resolvers/task';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 const main = async () => {
   const apolloServer = new ApolloServer({
@@ -10,6 +11,7 @@ const main = async () => {
       resolvers: [TaskResolver],
       validate: false,
     }),
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   });
 
   await apolloServer.start();
